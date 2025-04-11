@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Inventory System</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/web3@1.8.0/dist/web3.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs2@0.0.2/qrcode.min.js"></script></head>
+<body>
+    <div class="container">
+        <h1>Smart Inventory System</h1>
+        
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab('register')">Register Product</button>
+            <button class="tab-btn" onclick="openTab('view')">View Products</button>
+            <button class="tab-btn" onclick="openTab('transfer')">Transfer Products</button>
+            <button class="tab-btn" onclick="openTab('receive')">Receive Products</button>
+        </div>
+        
+        <div id="register" class="tab-content active">
+            <h2>Register New Product</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="uid">Product UID (leave blank to auto-generate):</label>
+                    <input type="text" id="uid" placeholder="Optional - System will generate if empty">
+                </div>
+                
+                <div class="form-group">
+                    <label for="name">Product Name:</label>
+                    <input type="text" id="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <input type="text" id="category">
+                </div>
+                
+                <div class="form-group">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" id="quantity" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="unit">Unit:</label>
+                    <select id="unit">
+                        <option value="kg">Kilogram (kg)</option>
+                        <option value="g">Gram (g)</option>
+                        <option value="l">Liter (l)</option>
+                        <option value="pcs">Pieces (pcs)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="productionDate">Production Date:</label>
+                    <input type="date" id="productionDate" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="shelfLife">Shelf Life (days):</label>
+                    <input type="number" id="shelfLife" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="storageRequirements">Storage Requirements:</label>
+                    <textarea id="storageRequirements"></textarea>
+                </div>
+                
+                <button type="submit" class="btn">Register Product</button>
+            </form>
+            
+            <div id="registrationResult" class="result-box">
+                <h3>Registration Result:</h3>
+                <div id="resultContent"></div>
+                <canvas id="qrcode"></canvas>
+                <button id="printQR" class="btn" style="display:none;">Print QR Code</button>
+            </div>
+            <div class="form-group">
+                <label>Or upload CSV file:</label>
+                <input type="file" id="csvFile" accept=".csv" class="btn">
+                <button id="processCSV" class="btn">Process CSV</button>
+            </div>
+        </div>
+        
+        <div id="view" class="tab-content">
+            <h2>Your Products</h2>
+            <button id="refreshProducts" class="btn">Refresh List</button>
+            <div id="productsList" class="products-list">
+                <table id="productsTable">
+                    <thead>
+                        <tr>
+                            <th>UID</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Expiry Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTableBody">
+                        <!-- Products will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div id="transfer" class="tab-content">
+            <h2>Transfer Product</h2>
+            <form id="transferForm">
+                <div class="form-group">
+                    <label for="transferUid">Product UID:</label>
+                    <input type="text" id="transferUid" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="recipientAddress">Recipient Ethereum Address:</label>
+                    <input type="text" id="recipientAddress" placeholder="0x..." required>
+                </div>
+                
+                <button type="submit" class="btn">Initiate Transfer</button>
+            </form>
+            
+            <div id="transferResult" class="result-box"></div>
+        </div>
+        
+        <div id="receive" class="tab-content">
+            <h2>Receive Product</h2>
+            <div class="scanner-container">
+                <h3>Scan QR Code:</h3>
+                <div id="scanner">
+                    <button id="startScan" class="btn">Start Scanner</button>
+                    <video id="qrScanner" style="display:none;"></video>
+                </div>
+                <p>Or enter UID manually:</p>
+                <form id="receiveForm">
+                    <div class="form-group">
+                        <label for="receiveUid">Product UID:</label>
+                        <input type="text" id="receiveUid" required>
+                    </div>
+                    
+                    <button type="submit" class="btn">Confirm Receipt</button>
+                </form>
+            </div>
+            
+            <div id="receiveResult" class="result-box"></div>
+        </div>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>

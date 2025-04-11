@@ -1,0 +1,146 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    background-color: #f1f1f1;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 16px;
+    border-radius: 5px 5px 0 0;
+    margin-right: 5px;
+}
+
+.tab-btn:hover {
+    background-color: #ddd;
+}
+
+.tab-btn.active {
+    background-color: #3498db;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+    padding: 20px;
+    background-color: white;
+    border-radius: 0 5px 5px 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 100px;
+    resize: vertical;
+}
+
+.btn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+.result-box {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    border-left: 4px solid #3498db;
+}
+
+.products-list {
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+#qrcode {
+    margin: 20px auto;
+    display: block;
+}
+
+.scanner-container {
+    text-align: center;
+}
+
+#qrScanner {
+    max-width: 100%;
+    margin: 10px auto;
+    display: block;
+}
